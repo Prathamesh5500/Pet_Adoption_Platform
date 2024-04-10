@@ -3,5 +3,10 @@ from django.urls import path
 from adoption import views
 
 urlpatterns = [
-    path('',views.landing_page,name="langing_page")
+    path('',views.HomePage,name='home'),
+    path('find_a_pet/', views.FindPet, name='find_a_pet'),
+    path('rehome_a_pet/', views.RehomePet, name='rehome_a_pet'),
+    path('about/', views.About, name='about_us'),
+    path('donate/', views.Donate, name='donate_us'),
+    path('my_account/', views.MyAccount, name='my_account'),
 ]

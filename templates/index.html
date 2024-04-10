@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet adoption</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adopt Pet</title>
 </head>
 <body>
-    <h1>Want to adopt Pet?</h1>
+  <nav>
+    <ul>
+      <li><a href="{% url 'home' %}" >Home</a></li>
+      <li><a href="{% url 'find_a_pet' %}" >Find a Pet</a></li>
+      <li><a href="{% url 'rehome_a_pet' %}" >Rehome a Pet</a></li>
+      <li><a href="{% url 'about_us' %}" >About Us</a></li>
+      <li><a href="{% url 'donate_us' %}" >Donate Us</a></li>
+      <li>Profile</li>
+      <li><a href="{% url 'my_account' %}" >My Account</a></li>
+      <li>login/Register</li>
+      <li>Logout</li>
+      {% block start %}
+      {% endblock %}
+    </ul>
+  </nav>
 </body>
 </html>

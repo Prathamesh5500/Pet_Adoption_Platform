@@ -1,6 +1,54 @@
 {% extends "index.html" %}
 {% block start %}
-<h1>Home Page</h1>
-{{content}}
+{%load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home_style.css' %}">
+<div class="slide_body">
+    <div class="slider-container">
+        <div class="CSSgal">
 
+        <s id="s1"></s> 
+        <s id="s2"></s>
+        <s id="s3"></s>
+        <s id="s4"></s>
+      
+            <div class="slider">
+                <div style="background:rgb(170, 37, 77);">
+                    <div class="slider-content">
+                        <img src="https://picsum.photos/id/40/1520/400" />
+                    </div>
+                </div>
+                    <div style="background:#85b;">
+                        <img src="https://picsum.photos/id/169/1520/400" />
+                    </div>
+                <div style="background:#e95;">
+                    <img src="https://picsum.photos/id/837/1520/400" />
+                </div>
+                <div style="background:rgb(199, 107, 148);">
+                    <img src="https://picsum.photos/id/1062/1520/400" />
+                </div>
+            </div>
+        
+            <div class="prevNext">
+                <div><a href="#s4"></a><a href="#s2"></a></div>
+                <div><a href="#s1"></a><a href="#s3"></a></div>
+                <div><a href="#s2"></a><a href="#s4"></a></div>
+                <div><a href="#s3"></a><a href="#s1"></a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+      <div class="container">
+        <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+        <div class="about_content">
+        <h1 style="text-align: center;">Straightforward Pet Rehoming And Adoption</h1>
+        <p style="text-align: center;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus architecto voluptas illo ratione reprehenderit sequi accusantium velit voluptatem cupiditate repellendus, debitis nisi quidem nesciunt nulla eveniet. Laborum magnam esse qui!</p>
+        </div>
+        </div>
+        </div>
+        </div>
+    
+           
 {% endblock %}

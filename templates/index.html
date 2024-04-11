@@ -15,11 +15,46 @@
       <li><a href="{% url 'donate_us' %}" >Donate Us</a></li>
       <li>Profile</li>
       <li><a href="{% url 'my_account' %}" >My Account</a></li>
-      <li>login/Register</li>
-      <li>Logout</li>
+      <li><button>login</button>/<button>Register</button></li>
+      <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
       {% block start %}
       {% endblock %}
     </ul>
   </nav>
+
+  <!-- Login Form -->
+  <form method="post" action="{% url 'login' %}?next={{ request.path }}">
+
+    {% csrf_token %}
+    <h3>Login Here</h3>
+    <label for="username">Username</label>
+    <input type="text" placeholder="Enter Username" id="username" name="username" value="Prathamesh">
+
+    <label for="password">Password</label>
+    <input type="password" placeholder="Password" id="password" name="pass" value="1234">
+
+    <button type="submit" name="signin" value="LoginP">Log In</button>
+  </form>
+
+  <!-- Register Form -->
+  <form action="{% url 'register' %}?next={{ request.path }}" method="post">
+
+    {% csrf_token %}
+    <h3>Sign Up</h3>
+
+    <label for="username">Username</label>
+    <input type="text" placeholder="Username" name="username" id="username" value="Prathamesh">
+
+    <label for="email">Email</label>
+    <input type="email" placeholder="Email" name="email" id="email" value="prathameshnagawade2003@gmail.com">
+
+    <label for="password1">Password</label>
+    <input type="password" placeholder="Password" id="password1" name="password1" value="1234">
+
+    <label for="password2">Confirm Password</label>
+    <input type="password" placeholder="Confirm Password" id="password2" name="password2" value="1234">
+
+    <button type="submit" name="register" value="RegisterP">Sign Up</button>
+  </form>
 </body>
 </html>

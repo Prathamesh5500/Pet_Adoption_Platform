@@ -1,3 +1,3 @@
-from django.contrib import admin
-
-# Register your models here.
+# models.py
+from django.db import models
+from django.contrib.auth.models import User

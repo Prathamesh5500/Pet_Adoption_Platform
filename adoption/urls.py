@@ -9,4 +9,7 @@ urlpatterns = [
     path('about/', views.About, name='about_us'),
     path('donate/', views.Donate, name='donate_us'),
     path('my_account/', views.MyAccount, name='my_account'),
+    path('login/', views.LoginP, name='login'),
+    path('register/', views.RegisterP, name='register'),
+    path('logout/', views.LogoutPage, name='logout'),
 ]

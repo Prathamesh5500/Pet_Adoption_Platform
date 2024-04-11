@@ -5,7 +5,276 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adopt Pet</title>
   <style>
-    
+    @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+	--c-text-primary: #282a32;
+	--c-text-secondary: #686b87;
+	--c-text-action: #404089;
+	--c-accent-primary: #434ce8;
+	--c-border-primary: #eff1f6;
+	--c-background-primary: #ffffff;
+	--c-background-secondary: #fdfcff;
+	--c-background-tertiary: #ecf3fe;
+	--c-background-quaternary: #e9ecf4;
+}
+
+body {
+	line-height: 1.5;
+	min-height: 100vh;
+	font-family: "Be Vietnam Pro", sans-serif;
+	background-color: var(--c-background-secondary);
+	color: var(--c-text-primary);
+}
+
+img {
+	display: block;
+	max-width: 100%;
+}
+
+:focus {
+	outline: 0;
+}
+
+.responsive-wrapper {
+	width: 90%;
+	max-width: 1280px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	height: 80px;
+	border-bottom: 1px solid var(--c-border-primary);
+	background-color: var(--c-background-primary);
+}
+
+.header-content {
+	display: flex;
+	align-items: center;
+	& > a {
+		display: none;
+	}
+	@media (max-width: 1200px) {
+		justify-content: space-between;
+		& > a {
+			display: inline-flex;
+		}
+	}
+}
+
+.header-logo {
+	margin-right: 2.5rem;
+	a {
+		display: flex;
+		align-items: center;
+		div {
+			// outline: 2px solid;
+			flex-shrink: 0;
+			position: relative;
+			&:after {
+				display: block;
+				content: "";
+				position: absolute;
+				left: 0;
+				top: auto;
+				right: 0;
+				bottom: 0;
+				overflow: hidden;
+				height: 50%;
+				border-bottom-left-radius: 8px;
+				border-bottom-right-radius: 8px;
+				background-color: rgba(#fff, 0.2);
+				backdrop-filter: blur(4px);
+			}
+		}
+	}
+}
+
+.header-navigation {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: space-between;
+	@media (max-width: 1200px) {
+		display: none;
+	}
+}
+
+.header-navigation-links {
+	display: flex;
+	align-items: center;
+
+	a {
+		text-decoration: none;
+		color: var(--c-text-action);
+		font-weight: 500;
+		transition: 0.15s ease;
+		& + * {
+			margin-left: 1.5rem;
+		}
+
+		&:hover,
+		&:focus {
+			color: var(--c-accent-primary);
+		}
+	}
+}
+
+.header-navigation-actions {
+	display: flex;
+	align-items: center;
+	& > .avatar {
+		margin-left: 0.75rem;
+	}
+	& > .icon-button + .icon-button {
+		margin-left: 0.25rem;
+	}
+
+	& > .button + .icon-button {
+		margin-left: 1rem;
+	}
+}
+
+.button {
+	font: inherit;
+	color: inherit;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 1em;
+	height: 40px;
+	border-radius: 8px;
+	line-height: 1;
+	border: 2px solid var(--c-border-primary);
+	color: var(--c-text-action);
+	font-size: 0.875rem;
+	transition: 0.15s ease;
+	background-color: var(--c-background-primary);
+
+	i {
+		margin-right: 0.5rem;
+		font-size: 1.25em;
+	}
+
+	span {
+		font-weight: 500;
+	}
+
+	&:hover,
+	&:focus {
+		border-color: var(--c-accent-primary);
+		color: var(--c-accent-primary);
+	}
+}
+
+.icon-button {
+	font: inherit;
+	color: inherit;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 8px;
+	color: var(--c-text-action);
+	transition: 0.15s ease;
+	i {
+		font-size: 1.25em;
+	}
+
+	&:focus,
+	&:hover {
+		background-color: var(--c-background-tertiary);
+		color: var(--c-accent-primary);
+	}
+}
+
+.avatar {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.main {
+	padding-top: 3rem;
+}
+
+.main-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+
+	h1 {
+		font-size: 1.75rem;
+		font-weight: 600;
+		line-height: 1.25;
+		@media (max-width: 550px) {
+			margin-bottom: 1rem;
+		}
+	}
+}
+
+.search {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	max-width: 340px;
+	input {
+		font: inherit;
+		color: inherit;
+		text-decoration: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0 1em 0 36px;
+		height: 40px;
+		border-radius: 8px;
+		border: 2px solid var(--c-border-primary);
+		color: var(--c-text-action);
+		font-size: 0.875rem;
+		transition: 0.15s ease;
+		width: 100%;
+		line-height: 1;
+
+		&::placeholder {
+			color: var(--c-text-action);
+		}
+
+		&:focus,
+		&:hover {
+			border-color: var(--c-accent-primary);
+		}
+	}
+
+	button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border: 0;
+		background-color: transparent;
+		position: absolute;
+		left: 12px;
+		top: 50%;
+		transform: translateY(-50%);
+		font-size: 1.25em;
+		color: var(--c-text-action);
+		padding: 0;
+		height: 40px;
+	}
+}
+
+
   </style>
 </head>
 <body>
@@ -55,7 +324,9 @@
       </div>
     </header>
 </nav>
-  <!-- Login Form -->
+{% block start %}
+{% endblock %}
+  <Login Form>
   <form method="post" action="{% url 'login' %}?next={{ request.path }}">
 
     {% csrf_token %}
@@ -69,7 +340,7 @@
     <button type="submit" name="signin" value="LoginP">Log In</button>
   </form>
 
-  <!-- Register Form -->
+   Register Form 
   <form action="{% url 'register' %}?next={{ request.path }}" method="post">
 
     {% csrf_token %}

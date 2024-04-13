@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adopt Pet</title>
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+ @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
 	--c-text-primary: #282a32;
@@ -44,12 +44,16 @@ img {
 }
 
 .header {
-	display: flex;
-	align-items: center;
-	height: 80px;
-	border-bottom: 1px solid var(--c-border-primary);
-	background-color: var(--c-background-primary);
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    height: 80px;
+    border-bottom: 1px solid var(--c-border-primary);
+    background-color: var(--c-background-primary);
+    z-index: 1000; /* Ensure it stays on top of other content */
 }
+
 
 .header-content {
 	display: flex;
@@ -71,7 +75,7 @@ img {
 		display: flex;
 		align-items: center;
 		div {
-			// outline: 2px solid;
+			/* outline: 2px solid; */
 			flex-shrink: 0;
 			position: relative;
 			&:after {
@@ -97,7 +101,7 @@ img {
 	display: flex;
 	flex-grow: 1;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	@media (max-width: 1200px) {
 		display: none;
 	}
@@ -195,170 +199,594 @@ img {
 }
 
 .avatar {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 44px;
-	height: 44px;
-	border-radius: 50%;
-	overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 0.75rem;
+}
+
+.avatar img {
+    width: 100%; 
+    height: auto; 
+    border-radius: 50%; 
 }
 
 .main {
 	padding-top: 3rem;
 }
 
-.main-header {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
-
-	h1 {
-		font-size: 1.75rem;
-		font-weight: 600;
-		line-height: 1.25;
-		@media (max-width: 550px) {
-			margin-bottom: 1rem;
-		}
-	}
-}
 
 .search {
-	position: relative;
-	display: flex;
-	align-items: center;
-	width: 100%;
-	max-width: 340px;
-	input {
-		font: inherit;
-		color: inherit;
-		text-decoration: none;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0 1em 0 36px;
-		height: 40px;
-		border-radius: 8px;
-		border: 2px solid var(--c-border-primary);
-		color: var(--c-text-action);
-		font-size: 0.875rem;
-		transition: 0.15s ease;
-		width: 100%;
-		line-height: 1;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 440px;
+}
 
-		&::placeholder {
-			color: var(--c-text-action);
-		}
+.search input {
+    font: inherit;
+    color: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1em 0 36px;
+    height: 40px;
+    border-radius: 8px;
+    border: 2px solid var(--c-border-primary);
+    color: var(--c-text-action);
+    font-size: 0.875rem;
+    transition: 0.15s ease;
+    width: 100%;
+    line-height: 1;
 
-		&:focus,
-		&:hover {
-			border-color: var(--c-accent-primary);
-		}
+    &::placeholder {
+        color: var(--c-text-action);
+    }
+
+    &:focus,
+    &:hover {
+        border-color: var(--c-accent-primary);
+    }
+}
+
+.search button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background-color: transparent;
+    font-size: 1.25em;
+    color: var(--c-text-action);
+    padding: 0;
+    height: 40px;
+}
+
+
+html {
+	&::-webkit-scrollbar {
+		width: 12px;
 	}
 
-	button {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		border: 0;
-		background-color: transparent;
-		position: absolute;
-		left: 12px;
-		top: 50%;
-		transform: translateY(-50%);
-		font-size: 1.25em;
-		color: var(--c-text-action);
-		padding: 0;
-		height: 40px;
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--c-text-primary);
+		border: 4px solid var(--c-background-primary);
+		border-radius: 99em;
+	}
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--c-background-primary);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+}
+
+.dropdown-content a {
+    color: var(--c-text-action);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--c-background-tertiary);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+/* .form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+} */
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+	box-sizing: border-box;
+}
+
+.block_body {
+	background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	margin: -20px 0 50px;
+	font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+h1 {
+	font-weight: bold;
+	margin: 0;
+}
+
+h2 {
+	text-align: center;
+}
+
+p {
+	font-size: 14px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 30px;
+}
+
+span {
+	font-size: 12px;
+}
+
+a {
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+}
+
+.sign_button {
+    color: #3458a7;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px 16px; /* Adjust padding as needed */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+	
+    
+}
+
+.sign_button:hover {
+    color: #FFFFFF;
+    background-color: #3458a7; /* Change background color on hover */
+}
+
+.sign_button:active {
+    transform: scale(0.95);
+}
+
+.sign_button:focus {
+    outline: none;
+}
+.close_button {
+    color: #3458a7;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px 16px; /* Adjust padding as needed */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+}
+
+.close_button:hover {
+    color: #FFFFFF;
+    background-color: #3458a7; /* Change background color on hover */
+}
+
+.close_button:active {
+    transform: scale(0.95);
+}
+
+.close_button:focus {
+    outline: none;
+}
+
+
+form{
+	background-color: #FFFFFF;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 50px;
+	height: 100%;
+	text-align: center;
+}
+
+input {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+.log_container {
+	background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 768px;
+	max-width: 100%;
+	min-height: 480px;
+}
+
+.log-form-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+}
+
+.container.right-panel-active .sign-in-container {
+	transform: translateX(100%);
+}
+.sign-up-container {
+	left: 0;
+	width: 50%;
+	opacity: 0;
+	z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 0.6s;
+}
+@keyframes show {
+	0%, 49.99% {
+		opacity: 0;
+		z-index: 1;
+	}
+	
+	50%, 100% {
+		opacity: 1;
+		z-index: 5;
 	}
 }
 
+.overlay-container {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+
+.container.right-panel-active .overlay-container{
+	transform: translateX(-100%);
+}
+
+.overlay {
+	background: #3458a7;
+	background: -webkit-linear-gradient(to right, #FF4B2B, #3458a7);
+	background: linear-gradient(to right, #3458a7, #3458a7);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #FFFFFF;
+	position: relative;
+	left: -100%;
+	height: 100%;
+	width: 200%;
+  	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+  	transform: translateX(50%);
+}
+
+.overlay-panel {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+	transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+	transform: translateX(0);
+}
+
+.overlay-right {
+	right: 0;
+	transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+	transform: translateX(20%);
+}
+
+.social-container {
+	margin: 20px 0;
+}
+
+.social-container a {
+	border: 1px solid #DDDDDD;
+	border-radius: 50%;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 5px;
+	height: 40px;
+	width: 40px;
+}
+.popup-content {
+    position: fixed;
+	height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 1000px; /* Adjust maximum width as needed */
+    width: 100%; /* Ensure the width fills the popup content */
+}
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: #ff4b2b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: #e33a1d;
+}
 
   </style>
 </head>
 <body>
-  
+
     <header class="header">
-      <div class="header-content responsive-wrapper">
-        <div class="header-logo">
-          <a href="{% url 'home' %}">
-            <div>
-              <img src="https://assets.codepen.io/285131/untitled-ui-icon.svg" />
-            </div>
-            <img src="https://assets.codepen.io/285131/untitled-ui.svg" />
-          </a>
-        </div>
-        <div class="header-navigation">
-          <nav class="header-navigation-links">
-            <a href="{% url 'home' %}" >Home</a>
-            <a href="{% url 'find_a_pet' %}" >Find a Pet</a>
-            <a href="{% url 'rehome_a_pet' %}" >Rehome a Pet</a>
-            <a href="{% url 'about_us' %}" >About Us</a>
-            
-          </nav>
-		  <div class="search">
-			<input type="text" placeholder="Search...">
-			<button type="button"><i class="ph-search-bold"></i></button>
+		<div class="header-content responsive-wrapper">
+		  <div class="header-logo">
+			<a href="{% url 'home' %}">
+			  <div>
+				<img src="https://assets.codepen.io/285131/untitled-ui-icon.svg" />
+			  </div>
+			  <img src="https://assets.codepen.io/285131/untitled-ui.svg" />
+			</a>
 		  </div>
-          <div class="header-navigation-actions">
-            <a href="{% url 'donate_us' %}" class="button">
-              <i class="heart"></i>
-              <span>Donate</span>
-            </a>
-            <a href="#" class="icon-button">
-              <i class="ph-gear-bold"></i>
-            </a>
-            <a href="#" class="icon-button">
-              <i class="ph-bell-bold"></i>
-            </a>
-            <a href="{% url 'my_account' %}" class="avatar">
-              <img src="https://assets.codepen.io/285131/hat-man.png" alt="" />
-            </a>
-          </div>
-        </div>
-        <a href="#" class="button">
-          <i class="ph-list-bold"></i>
-          <span>Menu</span>
-        </a>
-      </div>
-    </header>
-</nav>
-{% block start %}
-{% endblock %}
-  <Login Form>
-  <form method="post" action="{% url 'login' %}?next={{ request.path }}">
+		  <div class="header-navigation">
+			<nav class="header-navigation-links">
+			  <a href="{% url 'home' %}" >Home</a>
+			  <a href="{% url 'find_a_pet' %}" >Find a Pet</a>
+			  <a href="{% url 'rehome_a_pet' %}" >Rehome a Pet</a>
+			  <a href="{% url 'about_us' %}" >About Us</a>
+			  
+			</nav>
+			
+			<div class="header-navigation-actions">
+			  <a href="{% url 'donate_us' %}" class="button">
+				  <i class="heart"></i>
+				  <span>Donate</span>
+			  </a>
+			  
+			  <div class="dropdown">
+				  <button class="avatar">
+					  <img src="https://assets.codepen.io/285131/hat-man.png" alt="" />
+				  </button>
+				  <div class="dropdown-content">
+					 <a {% if request.session.user_authenticated %}
+					   href="{% url 'my_account' %}">Profile
+					   <a href="3">Settings</a>
+					   <a href="{% url 'logout' %}">Logout</a>
+      					{% else %}
+      					<a onclick="openForm()">Log In or Sign Up</a>
+      					{% endif %}</a>
+					   <!-- onclick="openForm()">My Account -->
+				  </div>
+			  </div>
+		  </div>
+		  
+		 
+		</div>
+	  </header>
+  </nav>
 
-    {% csrf_token %}
-    <h3>Login Here</h3>
-    <label for="username">Username</label>
-    <input type="text" placeholder="Enter Username" id="username" name="username" value="Prathamesh">
+  <div id="myForm" class="form-popup">
+	<div class="popup-content">
+	  <div class="block_body">
+		<div class="container" id="container">
+			<div class="log-form-container sign-up-container">
+				<form action="{% url 'register' %}?next={{ request.path }}" method="post">
+				  {% csrf_token %}
+				  <span>or use your email for registration</span>
+				  <label for="username">Username</label>
+				  <input type="text" placeholder="Username" name="username" id="username">
+				  <label for="email">Email</label>
+				  <input type="email" placeholder="Email" name="email" id="email">
+				  <label for="password1">Password</label>
+				  <input type="password" placeholder="Password" id="password1" name="password1">
+				  <label for="password2">Confirm Password</label>
+				  <input type="password" placeholder="Confirm Password" id="password2" name="password2">
+				  <button class="sign_button" type="submit" name="register" value="RegisterP">Sign Up</button>
+				  <button type="button" class="close_button" onclick="closeForm()">Close</button>
+				  <div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+					<a href="#" class="social"><i class "fab fa-linkedin-in"></i></a>
+				  </div>
+				</form>
+			  </div>
+		  <div class="log-form-container sign-in-container">
+			<form method="post" action="{% url 'login' %}?next={{ request.path }}">
+			  {% csrf_token %}
+			  <div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			  </div>
+			  <span>or use your account</span>
+			  <label for="username">Username</label>
+			  <input type="text" placeholder="Enter Username" id="username" name="username">
+			  <label for="password">Password</label>
+			  <input type="password" placeholder="Password" id="password" name="password">
+			  <button class="sign_button" type="submit" name="signin" value="LoginP">Log In</button>
+			  <a href="#">Forgot your password?</a>
+			  <button type="button" class="close_button" onclick="closeForm()">Continue As Guest....</button>
+			</form>
+		  </div>
+		  <div class="overlay-container">
+			<div class="overlay">
+			  <div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="sign_button" id="signIn">Sign In</button>
+			  </div>
+			  <div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="sign_button" id="signUp">Sign Up</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
 
-    <label for="password">Password</label>
-    <input type="password" placeholder="Password" id="password" name="pass" value="1234">
 
-    <button type="submit" name="signin" value="LoginP">Log In</button>
-  </form>
+  {% block start %}
+  {% endblock %}
+  <script>
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
 
-   Register Form 
-  <form action="{% url 'register' %}?next={{ request.path }}" method="post">
 
-    {% csrf_token %}
-    <h3>Sign Up</h3>
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
 
-    <label for="username">Username</label>
-    <input type="text" placeholder="Username" name="username" id="username" value="Prathamesh">
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
 
-    <label for="email">Email</label>
-    <input type="email" placeholder="Email" name="email" id="email" value="prathameshnagawade2003@gmail.com">
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
 
-    <label for="password1">Password</label>
-    <input type="password" placeholder="Password" id="password1" name="password1" value="1234">
-
-    <label for="password2">Confirm Password</label>
-    <input type="password" placeholder="Confirm Password" id="password2" name="password2" value="1234">
-
-    <button type="submit" name="register" value="RegisterP">Sign Up</button>
-  </form>
+  </script>
 </body>
 </html>

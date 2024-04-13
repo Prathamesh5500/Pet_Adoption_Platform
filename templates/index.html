@@ -684,9 +684,14 @@ input {
 					  <img src="https://assets.codepen.io/285131/hat-man.png" alt="" />
 				  </button>
 				  <div class="dropdown-content">
-					  <a onclick="openForm()">My Account</a>
-					  <a href="#">Settings</a>
-					  <a href="{% url 'logout' %}">Logout</a>
+					 <a {% if request.session.user_authenticated %}
+					   href="{% url 'my_account' %}">Profile
+					   <a href="3">Settings</a>
+					   <a href="{% url 'logout' %}">Logout</a>
+      					{% else %}
+      					<a onclick="openForm()">Log In or Sign Up</a>
+      					{% endif %}</a>
+					   <!-- onclick="openForm()">My Account -->
 				  </div>
 			  </div>
 		  </div>
@@ -703,11 +708,6 @@ input {
 			<div class="log-form-container sign-up-container">
 				<form action="{% url 'register' %}?next={{ request.path }}" method="post">
 				  {% csrf_token %}
-				  <div class="social-container">
-					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-					<a href="#" class="social"><i class "fab fa-linkedin-in"></i></a>
-				  </div>
 				  <span>or use your email for registration</span>
 				  <label for="username">Username</label>
 				  <input type="text" placeholder="Username" name="username" id="username">
@@ -718,7 +718,12 @@ input {
 				  <label for="password2">Confirm Password</label>
 				  <input type="password" placeholder="Confirm Password" id="password2" name="password2">
 				  <button class="sign_button" type="submit" name="register" value="RegisterP">Sign Up</button>
-				  <button type="button" class="close_button" onclick="closeForm()">Continue As Guest....</button>
+				  <button type="button" class="close_button" onclick="closeForm()">Close</button>
+				  <div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+					<a href="#" class="social"><i class "fab fa-linkedin-in"></i></a>
+				  </div>
 				</form>
 			  </div>
 		  <div class="log-form-container sign-in-container">

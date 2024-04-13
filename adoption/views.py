@@ -8,17 +8,21 @@ from django.urls import reverse
 def HomePage(request):
     return render(request, 'home.html')
 
+from django.contrib import messages
+
 def LoginP(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        pass1 = request.POST.get('pass')
-        user = authenticate(request, username=username, password=pass1)
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            # Store user's authentication status in session
+            request.session['user_authenticated'] = True
             next_url = request.GET.get('next', 'home')
             return redirect(next_url)
         else:
-            return HttpResponse("Username or Password is incorrect!!!")
+            messages.error(request, "Username or Password is incorrect!!!")
     return render(request, 'home.html')
 
 def RegisterP(request):

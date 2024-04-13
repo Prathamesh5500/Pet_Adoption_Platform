@@ -14,7 +14,7 @@
             <div class="slider">
                 <div style="background:rgb(170, 37, 77);">
                     <div class="slider-content">
-                        <img src="https://picsum.photos/id/40/1520/400" />
+                        <img src="https://picsum.photos/id/77/1520/400" />
                     </div>
                 </div>
                     <div style="background:#85b;">
@@ -49,6 +49,24 @@
         </div>
         </div>
         </div>
-    
+        {% if request.session.user_authenticated %}
+        <div class="alert" id="myAlert">
+          <p>Welcome, {{ request.user.username }}!</p>
+        </div>
+          
+      {% else %}
+      <div class="alert" id="myAlert">
+      <p>Please log in to access your account.</p>
+      </div>
+      {% endif %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+  var alertBox = document.getElementById('myAlert');
+  alertBox.style.display = 'block';
+  setTimeout(function(){
+    alertBox.style.display = 'none';
+  }, 1500); // 1500 milliseconds = 1.5 seconds
+});
+    </script>
            
 {% endblock %}

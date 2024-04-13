@@ -1,4 +1,108 @@
 {% extends "index.html" %}
 {% block start %}
-<h1>My account</h1>
+{%load static%}
+<link rel="stylesheet" type="text/css" href="{% static 'css/my_account.css' %}">
+<!-- <div id="login-form">
+    <h3>Login Here</h3>
+    <form method="post" action="{% url 'login' %}?next={{ request.path }}">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" placeholder="Enter Username" id="username" name="username">
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password" name="password">
+        <button type="submit" name="signin" value="LoginP">Log In</button>
+    </form>
+    <p>Don't have an account? <a href="#" id="signup-link">Sign up</a></p>
+</div> -->
+
+<!-- <div id="signup-form" style="display: none;">
+    <h3>Sign Up</h3>
+    <form action="{% url 'register' %}?next={{ request.path }}" method="post">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" placeholder="Username" name="username" id="username" value="Username">
+        <label for="email">Email</label>
+        <input type="email" placeholder="Email" name="email" id="email" value="example@example.com">
+        <label for="password1">Password</label>
+        <input type="password" placeholder="Password" id="password1" name="password1">
+        <label for="password2">Confirm Password</label>
+        <input type="password" placeholder="Confirm Password" id="password2" name="password2">
+        <button type="submit" name="register" value="RegisterP">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="#" id="login-link">Log in</a></p>
+</div> -->
+<!-- ---------------------------------------- -->
+
+<div class="block_body">
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="{% url 'register' %}?next={{ request.path }}" method="post">
+            {% csrf_token %}
+			
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your email for registration</span>
+			<label for="username">Username</label>
+            <input type="text" placeholder="Username" name="username" id="username" >
+            <label for="email">Email</label>
+            <input type="email" placeholder="Email" name="email" id="email" >
+            <label for="password1">Password</label>
+            <input type="password" placeholder="Password" id="password1" name="password1">
+            <label for="password2">Confirm Password</label>
+            <input type="password" placeholder="Confirm Password" id="password2" name="password2">
+            <button class="sign_button" type="submit" name="register" value="RegisterP">Sign Up</button>
+    </form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form method="post" action="{% url 'login' %}?next={{ request.path }}">
+            {% csrf_token %}
+			
+			<div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your account</span>
+            <label for="username">Username</label>
+            <input type="text" placeholder="Enter Username" id="username" name="username">
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" id="password" name="password">
+            <button class="sign_button" type="submit" name="signin" value="LoginP">Log In</button>
+			
+			<a href="#">Forgot your password?</a>
+			
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="sign_button" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="sign_button" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<script>
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+</script>
 {% endblock %}

@@ -649,7 +649,17 @@ input {
 .close-button:hover {
     background-color: #e33a1d;
 }
-
+#profileImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #512DA8;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+  line-height: 150px;
+  margin: 20px 0;
+}
   </style>
 </head>
 <body>
@@ -675,25 +685,31 @@ input {
 			
 			<div class="header-navigation-actions">
 			  <a href="{% url 'donate_us' %}" class="button">
-				  <i class="heart"></i>
 				  <span>Donate</span>
 			  </a>
-			  
 			  <div class="dropdown">
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 				  <button class="avatar">
 					  <img src="https://assets.codepen.io/285131/hat-man.png" alt="" />
-				  </button>
-				  <div class="dropdown-content">
-					 <a {% if request.session.user_authenticated %}
-					   href="{% url 'my_account' %}">Profile
-					   <a href="3">Settings</a>
-					   <a href="{% url 'logout' %}">Logout</a>
-      					{% else %}
-      					<a onclick="openForm()">Log In or Sign Up</a>
-      					{% endif %}</a>
-					   <!-- onclick="openForm()">My Account -->
-				  </div>
-			  </div>
+					</button> 
+					<a>{{ request.user.username }}</a>
+					
+					<div class="dropdown-content">
+						<a {% if request.session.user_authenticated %}
+						href="{% url 'my_account' %}">Profile
+						<a href="3">Settings</a>
+						<a href="{% url 'logout' %}">Logout</a>
+						{% else %}
+						<a onclick="openForm()">Log In or Sign Up</a>
+						{% endif %}</a>
+						<!-- onclick="openForm()">My Account -->
+					</div>
+				</div>
+				<!-- <div class="header-navigation">
+					<div class="header-navigation-links">
+				  <a>{{ request.user.username }}</a>
+				</div>
+				</div>  -->
 		  </div>
 		  
 		 
@@ -767,6 +783,7 @@ input {
   {% block start %}
   {% endblock %}
   <script>
+
 function openForm() {
   document.getElementById("myForm").style.display = "block";
 }

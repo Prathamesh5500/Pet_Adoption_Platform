@@ -690,10 +690,16 @@ input {
 					   <a href="{% url 'logout' %}">Logout</a>
       					{% else %}
       					<a onclick="openForm()">Log In or Sign Up</a>
-      					{% endif %}</a>
+      					{% endif %}
+					</a>
+					
 					   <!-- onclick="openForm()">My Account -->
 				  </div>
 			  </div>
+			  <!-- google Login  -->
+			  <a href="{% url 'social:begin' 'google-oauth2' %}">
+				<img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" alt="Sign in with Google" />
+			  </a>
 		  </div>
 		  
 		 

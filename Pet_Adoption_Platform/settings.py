@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # #social Auth in Django
+    'social_django',
+    
 ]
 
 MIDDLEWARE = [
@@ -48,6 +52,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # #social Django Middleware
+    'social_django.middleware.SocialAuthExceptionMiddleware',
+
 ]
 
 ROOT_URLCONF = 'Pet_Adoption_Platform.urls'
@@ -63,6 +71,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                #social Django Context Processors
+                'social_django.context_processors.backends',
+                
             ],
         },
     },
@@ -131,3 +143,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+# #social App Authentication Custom setting
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+# do not share this 
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '969574374852-kdg58ndtb7bkj9u1smgpkus3kvvufn9i.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+# routes for login and logout with Google 
+LOGIN_URL = ''
+LOGIN_REDIRECT_URL = 'my_account'
+LOGOUT_REDIRECT_URL = 'logout'

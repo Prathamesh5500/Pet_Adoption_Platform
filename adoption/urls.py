@@ -1,9 +1,10 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from adoption import views
 
 urlpatterns = [
     path('',views.HomePage,name='home'),
+     path('social-auth/', include('social_django.urls', namespace='social')),
     path('find_a_pet/', views.FindPet, name='find_a_pet'),
     path('rehome_a_pet/', views.RehomePet, name='rehome_a_pet'),
     path('about/', views.About, name='about_us'),

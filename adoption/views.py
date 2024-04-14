@@ -3,12 +3,12 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 def HomePage(request):
     return render(request, 'home.html')
-
-from django.contrib import messages
 
 def LoginP(request):
     if request.method == 'POST':
@@ -22,7 +22,8 @@ def LoginP(request):
             next_url = request.GET.get('next', 'home')
             return redirect(next_url)
         else:
-            messages.error(request, "Username or Password is incorrect!!!")
+            messages.info(request, "Username or Password is incorrect!!!")
+            return render(request, 'home.html', {'display_alert': True})
     return render(request, 'home.html')
 
 def RegisterP(request):
@@ -33,12 +34,15 @@ def RegisterP(request):
         pass2 = request.POST.get('password2')
 
         if User.objects.filter(username=uname).exists():
-            return HttpResponse("Username already taken. Please choose a different one.")
+            messages.info(request, "Username already exists")
+            return render(request, 'home.html', {'display_alert': True})
 
         if pass1 != pass2:
-            return HttpResponse("Your password and confirm password are not Same!!")
+            messages.info(request, "Both passwords are different")
+            return render(request, 'home.html', {'display_alert': True})
         else:
-            my_user = User.objects.create_user(uname, email, pass1)
+            my_user = User.objects.create_user(uname, email)
+            my_user.set_password(pass1)
             my_user.save()
             next_url = request.GET.get('next', 'home')
             return redirect(next_url)

@@ -49,16 +49,37 @@
         </div>
         </div>
         </div>
+{% if display_alert %}
+        <div class="alert alert-danger" role="alert" id="alert-message">
+            {% if messages %}
+                {{ message.tags }}
+                <div class="alert alert-danger" role="alert">
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <script>
+            setTimeout(function() {
+                var alertMessage = document.getElementById('alert-message');
+                alertMessage.style.display = 'none';
+            }, 2000);
+        </script>
+{% endif %}
+
         {% if request.session.user_authenticated %}
         <div class="alert" id="myAlert">
           <p>Welcome, {{ request.user.username }}!</p>
         </div>
-          
       {% else %}
       <div class="alert" id="myAlert">
       <p>Please log in to access your account.</p>
       </div>
       {% endif %}
+
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
   var alertBox = document.getElementById('myAlert');
@@ -70,3 +91,10 @@
     </script>
            
 {% endblock %}
+
+
+
+
+
+
+

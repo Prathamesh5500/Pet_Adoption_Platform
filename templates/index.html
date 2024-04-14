@@ -719,17 +719,18 @@ input {
 	  <div class="block_body">
 		<div class="container" id="container">
 			<div class="log-form-container sign-up-container">
+				{% comment %} register code {% endcomment %}
 				<form action="{% url 'register' %}?next={{ request.path }}" method="post">
 				  {% csrf_token %}
 				  <span>or use your email for registration</span>
 				  <label for="username">Username</label>
-				  <input type="text" placeholder="Username" name="username" id="username">
+				  <input type="text" placeholder="Username" name="username" id="username" value="Prathamesh">
 				  <label for="email">Email</label>
-				  <input type="email" placeholder="Email" name="email" id="email">
+				  <input type="email" placeholder="Email" name="email" id="email" value="sf@gj">
 				  <label for="password1">Password</label>
-				  <input type="password" placeholder="Password" id="password1" name="password1">
+				  <input type="password" placeholder="Password" id="password1" name="password1" value="1">
 				  <label for="password2">Confirm Password</label>
-				  <input type="password" placeholder="Confirm Password" id="password2" name="password2">
+				  <input type="password" placeholder="Confirm Password" id="password2" name="password2" value="1">
 				  <button class="sign_button" type="submit" name="register" value="RegisterP">Sign Up</button>
 				  <button type="button" class="close_button" onclick="closeForm()">Close</button>
 				  
@@ -740,6 +741,7 @@ input {
 			  </div>
 		  <div class="log-form-container sign-in-container">
 			<form method="post" action="{% url 'login' %}?next={{ request.path }}">
+				{% comment %} login code {% endcomment %}
 			  {% csrf_token %}
 			  <div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -748,9 +750,9 @@ input {
 			  </div>
 			  <span>or use your account</span>
 			  <label for="username">Username</label>
-			  <input type="text" placeholder="Enter Username" id="username" name="username">
+			  <input type="text" placeholder="Enter Username" id="username" name="username" value="Prathamesh">
 			  <label for="password">Password</label>
-			  <input type="password" placeholder="Password" id="password" name="password">
+			  <input type="password" placeholder="Password" id="password" name="password" value="1234">
 			  <button class="sign_button" type="submit" name="signin" value="LoginP">Log In</button>
 			  <a href="#">Forgot your password?</a>
 			  <button type="button" class="close_button" onclick="closeForm()">Continue As Guest....</button>

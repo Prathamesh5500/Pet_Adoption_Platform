@@ -706,9 +706,7 @@ input {
 				  </div>
 			  </div>
 			  <!-- google Login  -->
-			  <a href="{% url 'social:begin' 'google-oauth2' %}">
-				<img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" alt="Sign in with Google" />
-			  </a>
+			  
 		  </div>
 		  
 		 
@@ -734,11 +732,10 @@ input {
 				  <input type="password" placeholder="Confirm Password" id="password2" name="password2">
 				  <button class="sign_button" type="submit" name="register" value="RegisterP">Sign Up</button>
 				  <button type="button" class="close_button" onclick="closeForm()">Close</button>
-				  <div class="social-container">
-					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-					<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-					<a href="#" class="social"><i class "fab fa-linkedin-in"></i></a>
-				  </div>
+				  
+					<a href="{% url 'social:begin' 'google-oauth2' %}">
+						<img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" alt="Sign in with Google" />
+					  </a>
 				</form>
 			  </div>
 		  <div class="log-form-container sign-in-container">
@@ -757,6 +754,9 @@ input {
 			  <button class="sign_button" type="submit" name="signin" value="LoginP">Log In</button>
 			  <a href="#">Forgot your password?</a>
 			  <button type="button" class="close_button" onclick="closeForm()">Continue As Guest....</button>
+			  <a href="{% url 'social:begin' 'google-oauth2' %}">
+				<img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" alt="Sign in with Google" />
+			  </a>
 			</form>
 		  </div>
 		  <div class="overlay-container">

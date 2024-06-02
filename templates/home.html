@@ -1,25 +1,25 @@
 {% extends "index.html" %}
 {% block start %}
-{%load static%}
+{% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/home_style.css' %}">
 <div class="slide_body">
     <div class="slider-container">
         <div class="CSSgal">
 
-        <s id="s1"></s> 
-        <s id="s2"></s>
-        <s id="s3"></s>
-        <s id="s4"></s>
-      
+            <s id="s1"></s> 
+            <s id="s2"></s>
+            <s id="s3"></s>
+            <s id="s4"></s>
+          
             <div class="slider">
                 <div style="background:rgb(170, 37, 77);">
                     <div class="slider-content">
                         <img src="https://picsum.photos/id/77/1520/400" />
                     </div>
                 </div>
-                    <div style="background:#85b;">
-                        <img src="https://picsum.photos/id/169/1520/400" />
-                    </div>
+                <div style="background:#85b;">
+                    <img src="https://picsum.photos/id/169/1520/400" />
+                </div>
                 <div style="background:#e95;">
                     <img src="https://picsum.photos/id/837/1520/400" />
                 </div>
@@ -38,63 +38,53 @@
     </div>
 </div>
 
-
-      <div class="container">
-        <div class="row">
+<div class="container">
+    <div class="row">
         <div class="col-lg-10 offset-lg-1">
-        <div class="about_content">
-        <h1 style="text-align: center;">Straightforward Pet Rehoming And Adoption</h1>
-        <p style="text-align: center;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus architecto voluptas illo ratione reprehenderit sequi accusantium velit voluptatem cupiditate repellendus, debitis nisi quidem nesciunt nulla eveniet. Laborum magnam esse qui!</p>
+            <div class="about_content">
+                <h1 style="text-align: center;">Straightforward Pet Rehoming And Adoption</h1>
+                <p style="text-align: center;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus architecto voluptas illo ratione reprehenderit sequi accusantium velit voluptatem cupiditate repellendus, debitis nisi quidem nesciunt nulla eveniet. Laborum magnam esse qui!</p>
+            </div>
         </div>
-        </div>
-        </div>
-        </div>
+    </div>
+</div>
+
 {% if display_alert %}
-        <div class="alert alert-danger" role="alert" id="alert-message">
-            {% if messages %}
-                {{ message.tags }}
-                <div class="alert alert-danger" role="alert">
-                    {% for message in messages %}
-                    {{ message }}
-                    {% endfor %}
-                </div>
-            {% endif %}
-        </div>
-        <script>
-            setTimeout(function() {
-                var alertMessage = document.getElementById('alert-message');
-                alertMessage.style.display = 'none';
-            }, 2000);
-        </script>
+    <div class="alert alert-danger" role="alert" id="alert-message">
+        {% if messages %}
+            {{ message.tags }}
+            <div class="alert alert-danger" role="alert">
+                {% for message in messages %}
+                {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <script>
+        setTimeout(function() {
+            var alertMessage = document.getElementById('alert-message');
+            alertMessage.style.display = 'none';
+        }, 2000);
+    </script>
 {% endif %}
 
-        {% if request.session.user_authenticated %}
-        <div class="alert" id="myAlert">
-          <p>Welcome, {{ request.user.username }}!</p>
-        </div>
-      {% else %}
-      <div class="alert" id="myAlert">
-      <p>Please log in to access your account.</p>
-      </div>
-      {% endif %}
+{% if request.session.user_authenticated %}
+    <div class="alert" id="myAlert">
+        <p>Welcome, {{ request.user.username }}!</p>
+    </div>
+{% else %}
+    <div class="alert" id="myAlert">
+        <p>Please log in to access your account.</p>
+    </div>
+{% endif %}
 
-
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-  var alertBox = document.getElementById('myAlert');
-  alertBox.style.display = 'block';
-  setTimeout(function(){
-    alertBox.style.display = 'none';
-  }, 1500); // 1500 milliseconds = 1.5 seconds
-});
-    </script>
-           
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var alertBox = document.getElementById('myAlert');
+        alertBox.style.display = 'block';
+        setTimeout(function(){
+            alertBox.style.display = 'none';
+        }, 1500); // 1500 milliseconds = 1.5 seconds
+    });
+</script>
 {% endblock %}
-
-
-
-
-
-
-

@@ -1,26 +1,49 @@
 {% extends "index.html" %}
 {% block start %}
-{%load static%}
+{% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/my_account.css' %}">
-<div class="profile">
-    <!-- <img src="https://ui-avatars.com/api/?name=John+Doe" /> -->
-    <div id="profileImage"></div>
-    <h1>{{ request.user.username }}</h1>
-    <p>Email:{{ request.user.email }}</p>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div class="profile-container">
+    <div class="profile">
+        <div id="profileImage"></div>
+        <h1>{{ request.user.username }}</h1>
+        <p>Email: {{ request.user.email }}</p>
+        <button id="editProfileButton" class="btn">Edit Profile</button>
 
-    <span id="firstName">{{ request.user.username }}</span>
-        
-    
-  </div>
+        <form id="editProfileForm" style="display: none;" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="profilePhoto">Profile Photo:</label>
+                <input type="file" id="profilePhoto" name="profile_photo">
+            </div>
+            <div class="form-group">
+                <label for="username">Name:</label>
+                <input type="text" id="username" name="username" value="{{ request.user.username }}">
+            </div>
+            <button type="submit" class="btn save-button">Save</button>
+            <button type="button" id="cancelButton" class="btn cancel-button">Cancel</button>
+        </form>
+    </div>
+</div>
 
-  <script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
     $(document).ready(function(){
-  var firstName = $('#firstName').text();
-  var lastName = $('#lastName').text();
-  var intials = $('#firstName').text().charAt(0) + $('#lastName').text().charAt(0);
-  var profileImage = $('#profileImage').text(intials);
-});
+        var username = "{{ request.user.username }}";
+        var initials = username.charAt(0);
+        if (username.indexOf(" ") !== -1) {
+            initials += username.split(" ").slice(-1)[0].charAt(0);
+        }
+        $('#profileImage').text(initials.toUpperCase());
 
-  </script>
+        $('#editProfileButton').click(function() {
+            $('#editProfileForm').show();
+            $(this).hide();
+        });
+
+        $('#cancelButton').click(function() {
+            $('#editProfileForm').hide();
+            $('#editProfileButton').show();
+        });
+    });
+</script>
 {% endblock %}

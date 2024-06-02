@@ -1,4 +1,47 @@
 {% extends "index.html" %}
+
+{% block styles %}
+<style>
+    .about-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-container h1 {
+        font-size: 32px;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .about-container p {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    /* Media Query for Phones */
+    @media only screen and (max-width: 600px) {
+        .about-container {
+            max-width: 100%;
+            padding: 10px;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block start %}
-<h1>About us</h1>
+    <div class="about-container">
+        <h1>About Us</h1>
+        <p>Welcome to our website! We are a team of passionate individuals dedicated to providing high-quality products/services to our customers. Our mission is to [describe your mission or purpose].</p>
+        <p>Here at [Your Company Name], we prioritize [your company's core values or principles]. We believe in [mention any beliefs or philosophies that guide your company].</p>
+        <p>Our team consists of [mention the number of team members or any notable individuals], each bringing their unique skills and expertise to the table. Together, we strive to [mention your goals or objectives].</p>
+        <p>Customer satisfaction is our top priority. We are committed to [mention how you ensure customer satisfaction or any special services you offer].</p>
+        <p>Thank you for visiting our website. If you have any questions or inquiries, please don't hesitate to [provide contact information or link to your contact page]. We look forward to serving you!</p>
+    </div>
 {% endblock %}

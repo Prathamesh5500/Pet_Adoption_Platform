@@ -722,15 +722,15 @@ input {
 				{% comment %} register code {% endcomment %}
 				<form action="{% url 'register' %}?next={{ request.path }}" method="post">
 				  {% csrf_token %}
-				  <span>or use your email for registration</span>
+				  <h6><span>Registration</span></h6>
 				  <label for="username">Username</label>
-				  <input type="text" placeholder="Username" name="username" id="username" value="Prathamesh">
+				  <input type="text" placeholder="Username" name="username" id="username">
 				  <label for="email">Email</label>
-				  <input type="email" placeholder="Email" name="email" id="email" value="sf@gj">
+				  <input type="email" placeholder="Email" name="email" id="email">
 				  <label for="password1">Password</label>
-				  <input type="password" placeholder="Password" id="password1" name="password1" value="1">
+				  <input type="password" placeholder="Password" id="password1" name="password1" >
 				  <label for="password2">Confirm Password</label>
-				  <input type="password" placeholder="Confirm Password" id="password2" name="password2" value="1">
+				  <input type="password" placeholder="Confirm Password" id="password2" name="password2" >
 				  <button class="sign_button" type="submit" name="register" value="RegisterP">Sign Up</button>
 				  <button type="button" class="close_button" onclick="closeForm()">Close</button>
 				  
@@ -743,19 +743,19 @@ input {
 			<form method="post" action="{% url 'login' %}?next={{ request.path }}">
 				{% comment %} login code {% endcomment %}
 			  {% csrf_token %}
-			  <div class="social-container">
+			  <!-- <div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
 				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
 				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			  </div>
-			  <span>or use your account</span>
+			  </div> -->
+			  <span>Sign In</span>
 			  <label for="username">Username</label>
 			  <input type="text" placeholder="Enter Username" id="username" name="username" value="Prathamesh">
 			  <label for="password">Password</label>
 			  <input type="password" placeholder="Password" id="password" name="password" value="1234">
 			  <button class="sign_button" type="submit" name="signin" value="LoginP">Log In</button>
 			  <a href="#">Forgot your password?</a>
-			  <button type="button" class="close_button" onclick="closeForm()">Continue As Guest....</button>
+			  <button type="button" class="close_button" onclick="closeForm()">Close</button>
 			  <a href="{% url 'social:begin' 'google-oauth2' %}">
 				<img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" alt="Sign in with Google" />
 			  </a>

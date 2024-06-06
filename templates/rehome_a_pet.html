@@ -1,4 +1,113 @@
 {% extends "index.html" %}
 {% block start %}
 <h1>rehome a pet</h1>
+<!-- display successfully data inserted in db message for 10 seconds  -->
+{% if messages %}
+    <ul id="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    <script>
+        setTimeout(function() {
+            document.getElementById("messages").style.display = "none";
+        }, 2000); // 10000 milliseconds = 10 seconds
+    </script>
+{% endif %}
+<!-- for tag for inserting the data  -->
+<form action="" method="POST">
+    {% csrf_token %}
+    <label for="name">Name of Pet:</label>
+    <input type="text" name="name" id="name">
+    <br>
+    
+    <label for="description">Description of Pet:</label>
+    <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+    <br>
+    
+    <label for="color">Color of Pet:</label>
+    <input type="text" name="color" id="color">
+    <br>
+    
+    <label for="species">Choose a species of Pet:</label>
+    <select name="species" id="species" onchange="breedDropdown()">
+        <option value="">--Select a species--</option>
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+    </select>
+    <br>
+    
+    <label for="breed">Breed:</label>
+    <select name="breed" id="breed" disabled>
+        <option value="">Please select a species</option>
+    </select>
+    <br>
+    
+    <label for="gender">Gender:</label>
+    <select name="gender" id="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+    <br>
+    
+    <label for="size">Size:</label>
+    <select name="size" id="size">
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+    </select>
+    <br>
+    
+    <label for="age">Age:</label>
+    <input type="number" name="age" id="age">
+    <br>
+    
+    <label for="spayed">Spayed:</label>
+    <select name="spayed" id="spayed">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select>
+    <br>
+    
+    <label for="sellername">Seller Name:</label>
+    <input type="text" name="sellername" id="sellername">
+    <br>
+    
+    <label for="adoptionfee">Adoption Fee:</label>
+    <input type="number" name="adoptionfee" id="adoptionfee">
+    <br>
+    
+    <label for="phone">Phone Number:</label>
+    <input type="text" name="phone" id="phone">
+    <br>
+    
+    <button type="submit">Rehome Pet</button>
+</form>
+
+
+<script>
+    // Define breed data
+    const breedData = {
+        "Dog": ["Indian pariah dog", "Indian Spitz", "Mudhol hound", "Rajapalayam", "Beagle", "Chippiparai", "German Shepherd", "Labrador", "Pug", "Doberman", "Bakharwal dog", "Boxer", "Bulldog"],
+        "Cat": ["Bombay cat", "Himalayan cat", "Siamese cat", "Maine Coon", "Persian cat", "American Bobtail", "Oriental Shorthair"],
+    };
+
+    function breedDropdown() {
+        const breedDropdown = document.getElementById("breed");
+        const selectedSpecies = document.getElementById("species").value;
+
+        // Clear existing options
+        breedDropdown.innerHTML = "";
+
+        if (selectedSpecies && breedData[selectedSpecies]) {
+            breedDropdown.disabled = false; // Enable the dropdown
+            breedData[selectedSpecies].forEach(breed => {
+                breedDropdown.add(new Option(breed, breed));
+            });
+        } else {
+            breedDropdown.disabled = true; // Disable the dropdown if no valid species
+            breedDropdown.add(new Option("Please select a species", ""));
+        }
+    }
+</script>
 {% endblock %}

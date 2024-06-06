@@ -90,6 +90,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'pet_info',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',  # or the hostname where your MySQL server is running

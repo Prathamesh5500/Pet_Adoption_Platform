@@ -34,23 +34,29 @@
         </div>
     </div>
     
-    <!-- Pet Cards -->
-    <div class="pet-cards-container">
-        <div class="pet-cards row row-cols-1 row-cols-md-3 g-4">
-            {% for pet in pets %}
-            <div class="card" style="width: 18rem;">
-                <img src="{{ pet.image }}" class="card-img-top" alt="Pet Image">
-                <div class="card-body">
-                    <h5 class="card-title">{{ pet.name }}</h5>
-                    <p class="card-text">{{ pet.description }}</p>
-                    <button type="button" class="btn btn-primary adopt-btn">Adopt</button>
-                </div>
+<!-- Pet Cards -->
+<div class="pet-cards-container">
+    <div class="pet-cards row row-cols-1 row-cols-md-3 g-4">
+        {% for pet in pets %}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ pet.name }}</h5>
+                <p class="card-text">
+                    Gender: {{ pet.gender }}<br>
+                    Size: {{ pet.size }}<br>
+                    Color: {{ pet.color }}<br>
+                    Age: {{ pet.age }}<br>
+                    Spayed: {{ pet.spayed }}<br>
+                    Seller: {{ pet.seller }}<br>
+                </p>
+                <button type="button" class="btn btn-primary adopt-btn">Adopt</button>
             </div>
-            {% empty %}
-            <p>No pets found.</p>
-            {% endfor %}
         </div>
+        {% empty %}
+        <p>No pets found.</p>
+        {% endfor %}
     </div>
+</div>
 <script>
     document.querySelector('.advanced-search-btn').addEventListener('click', function () {
         document.querySelector('.advanced-search-panel').classList.toggle('show');

@@ -5,8 +5,8 @@ from adoption import views
 urlpatterns = [
     path('',views.HomePage,name='home'),
     path('social-auth/', include('social_django.urls', namespace='social')),
-    path('find_a_pet/', views.find_a_pet, name='find_a_pet'),
-    path('rehome_a_pet/', views.RehomePet, name='rehome_a_pet'),
+    path('find-a-pet/', views.find_a_pet, name='find_a_pet'),
+    path('rehome_a_pet/', views.Rehome, name='rehome_a_pet'),
     path('about/', views.About, name='about_us'),
     path('donate/', views.Donate, name='donate_us'),
     path('my_account/', views.MyAccount, name='my_account'),

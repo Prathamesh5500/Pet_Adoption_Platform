@@ -3,7 +3,12 @@
 
 A pet Adoption Website which meets needs of the customers who wishes to adopt a pet (Dog, Cat and Bird) or wishes to giveaway their pet to new owner.
 
-
+## Work to be Done yet:
+-[] Profile Page Customization
+-[] image Database
+-[] Changes in NavBar
+-[] Making entire website mobile phone friendly
+-[] Add here...
 
 ## Deployment
 

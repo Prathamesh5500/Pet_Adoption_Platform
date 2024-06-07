@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 {% block start %}
-<h1>rehome a pet</h1>
-<!-- display successfully data inserted in db message for 10 seconds  -->
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/rehome.css' %}">
 {% if messages %}
     <ul id="messages">
         {% for message in messages %}
@@ -11,11 +11,13 @@
     <script>
         setTimeout(function() {
             document.getElementById("messages").style.display = "none";
-        }, 2000); // 10000 milliseconds = 10 seconds
+        }, 2000); // 2000 milliseconds = 2 seconds
     </script>
 {% endif %}
-<!-- for tag for inserting the data  -->
-<form action="" method="POST">
+
+{% if user.is_authenticated %}
+<!-- form for inserting the data -->
+<form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="name">Name of Pet:</label>
     <input type="text" name="name" id="name">
@@ -44,10 +46,14 @@
     <br>
     
     <label for="gender">Gender:</label>
-    <select name="gender" id="gender">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-    </select>
+    <div class="switch-container">
+        <span>Male</span>
+        <label class="switch">
+            <input type="checkbox" name="gender" id="gender" value="male" onchange="toggleGender()">
+            <span class="slider round"></span>
+        </label>
+        <span>Female</span>
+    </div>
     <br>
     
     <label for="size">Size:</label>
@@ -59,7 +65,7 @@
     <br>
     
     <label for="age">Age:</label>
-    <input type="number" name="age" id="age">
+    <input type="number" name="age" id="age" min="0">
     <br>
     
     <label for="spayed">Spayed:</label>
@@ -81,9 +87,17 @@
     <input type="text" name="phone" id="phone">
     <br>
     
-    <button type="submit">Rehome Pet</button>
+    <button type="submit">LIST YOUR PET</button>
 </form>
 
+{% else %}
+<script>
+    window.onload = function() {
+        alert("Please log in or sign up to list your pet.");
+        window.location.href = "{% url 'login' %}"; // Redirect to the login page
+    };
+</script>
+{% endif %}
 
 <script>
     // Define breed data
@@ -108,6 +122,11 @@
             breedDropdown.disabled = true; // Disable the dropdown if no valid species
             breedDropdown.add(new Option("Please select a species", ""));
         }
+    }
+
+    function toggleGender() {
+        const genderCheckbox = document.getElementById('gender');
+        genderCheckbox.value = genderCheckbox.checked ? 'female' : 'male';
     }
 </script>
 {% endblock %}

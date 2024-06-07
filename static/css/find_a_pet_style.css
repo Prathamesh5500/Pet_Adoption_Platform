@@ -1,42 +1,33 @@
-    .advanced-search-panel {
-        display: none; /* Hide the panel by default */
-        position: absolute;
-        top: 52%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 15px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        z-index: 999; /* Ensure it's above other content */
-    }
-    
-    .advanced-search-panel label {
-        display: block;
-        margin-bottom: 15px;
-    }
-    .advanced-search-panel input[type="text"],
-    .advanced-search-panel select {
-        width: 100%;
-        padding: 2px;
-        border: 1px solid #554b4b; /* Add border */
-        border-radius: 4px;
-        margin-bottom: 15px;
-    }
-    
-    
-    .advanced-search-panel button {
-        margin-top: 10px;
-        padding: 8px 16px;
-        border: none;
-        border-radius: 4px;
-        background-color: #3d78d5;
-        color: white;
-        cursor: pointer;
-    }
-    
-    /* Show the advanced search panel when the advanced search button is clicked */
-    .advanced-search-panel.show {
-        display: block;
-    }
-    
+/* Centering the card container */
+.pet-cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Styling the cards */
+.card {
+    width: 18rem;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.adopt-btn {
+    width: 100%;
+}

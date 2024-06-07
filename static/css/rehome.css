@@ -124,3 +124,23 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(26px);
 }
+
+/* Radio button container styles */
+.radio-container {
+    display: inline-block; /* Ensures radio buttons appear in a line */
+}
+
+.radio-container input[type="radio"] {
+    display: none; /* Hide the default radio buttons */
+}
+
+.radio-container label {
+    display: inline-block;
+    margin-right: 10px; /* Adjust spacing between radio buttons */
+    cursor: pointer;
+}
+
+/* Style the radio button label when selected */
+.radio-container input[type="radio"]:checked + label {
+    font-weight: bold; /* Example style change when selected */
+}

@@ -5,16 +5,27 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Details,Seller
-
+from .models import Details,Seller,AdoptionImage
+import cloudinary.uploader
+from django.conf import settings
 # Create your views here.
 def HomePage(request):
     return render(request, 'home.html')
 
 def Rehome(request):
+    cloudinary.config(
+        cloud_name=settings.CLOUDINARY['CLOUD_NAME'],
+        api_key=settings.CLOUDINARY['API_KEY'],
+        api_secret=settings.CLOUDINARY['API_SECRET']
+    )
     if request.method == 'POST':
+        name = request.POST.get('name')  # Assuming you pass the name along with the image in the request
+        image = request.FILES['image']
+        uploaded_image = cloudinary.uploader.upload(image)
+        # Assuming you want to save the name along with the image
+        AdoptionImage.objects.create(name=name, image=uploaded_image['url'])
         name = request.POST.get('name')
-        gender = request.POST.get('gender')
+        gender = request.POST.get('gender', 'Male') 
         size = request.POST.get('size')
         color = request.POST.get('color')
         age = request.POST.get('age')
@@ -91,9 +102,13 @@ def LogoutPage(request):
     return redirect('home')
 
 def find_a_pet(request):
-    # for desplaying the data od details function
     pets = Details.objects.all()
-    return render(request, 'find_a_pet.html', {'pets': pets}) 
+    for pet in pets:
+        try:
+            pet.image = AdoptionImage.objects.get(name=pet.name)
+        except AdoptionImage.DoesNotExist:
+            pet.image = None
+    return render(request, 'find_a_pet.html', {'pets': pets})
 
 def RehomePet(request):
     return render(request,'rehome_a_pet.html')

@@ -14,6 +14,28 @@
 <div class="pet-cards-container">
     <div class="pet-cards row row-cols-1 row-cols-md-3 g-4">
         {% for pet in pets %}
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        <div class="card" style="width: 18rem;">
+            {% if pet.image %}
+            <img src="{{ pet.image.image }}" alt="Image of {{ pet.name }}">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ pet.name }}</h5>
+                <p class="card-text">
+                    Gender: {{ pet.gender }}<br>
+                    Size: {{ pet.size }}<br>
+                    Color: {{ pet.color }}<br>
+                    Age: {{ pet.age }}<br>
+                    Spayed: {{ pet.spayed }}<br>
+                    Seller: {{ pet.seller }}<br>
+                    </p>
+                <button type="button" class="btn btn-primary adopt-btn">Adopt</button>
+=======
+>>>>>>> Stashed changes
         <div class="col d-flex justify-content-center">
             <div class="card">
                 <div class="card-body">
@@ -28,6 +50,10 @@
                     </p>
                     <button type="button" class="btn btn-primary adopt-btn">Adopt</button>
                 </div>
+<<<<<<< Updated upstream
+=======
+>>>>>>> d82e72f8fd35f11fe27193dc59cfb36a51b33da8
+>>>>>>> Stashed changes
             </div>
         </div>
         {% empty %}

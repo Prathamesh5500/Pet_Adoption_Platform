@@ -20,8 +20,20 @@
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="name">Name of Pet:</label>
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+    <input type="text" name="name" id="name">
+    <br>
+    <p>
+        <label for="image">Image:</label>
+        <input type="file" name="image" id="image" required>
+    </p>
+=======
+>>>>>>> Stashed changes
     <input type="text" name="name" id="name" required>
     
+>>>>>>> d82e72f8fd35f11fe27193dc59cfb36a51b33da8
     <label for="description">Description of Pet:</label>
     <textarea class="form-control" name="description" id="description" rows="3" required></textarea>
     
@@ -69,8 +81,19 @@
     <label for="sellername">Seller Name:</label>
     <input type="text" name="sellername" id="sellername" value="{{ user.username }}" readonly>
     
+<<<<<<< Updated upstream
     <label for="adoptionfee">Adoption Fee:</label>
     <input type="number" name="adoptionfee" id="adoptionfee" required>
+=======
+<<<<<<< HEAD
+    <label for="adoptionfee">Adoption Fee(Rs):</label>
+    <input type="number" name="adoptionfee" id="adoptionfee">
+    <br>
+=======
+    <label for="adoptionfee">Adoption Fee:</label>
+    <input type="number" name="adoptionfee" id="adoptionfee" required>
+>>>>>>> d82e72f8fd35f11fe27193dc59cfb36a51b33da8
+>>>>>>> Stashed changes
     
     <label for="phone">Phone Number:</label>
     <input type="text" name="phone" id="phone" pattern="\d{10}" title="Please enter a valid 10-digit phone number" required>

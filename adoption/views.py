@@ -101,6 +101,7 @@ def LogoutPage(request):
     logout(request)
     return redirect('home')
 
+@login_required
 def find_a_pet(request):
     pets = Details.objects.all()
     for pet in pets:
@@ -110,6 +111,7 @@ def find_a_pet(request):
             pet.image = None
     return render(request, 'find_a_pet.html', {'pets': pets})
 
+@login_required
 def RehomePet(request):
     return render(request,'rehome_a_pet.html')
 

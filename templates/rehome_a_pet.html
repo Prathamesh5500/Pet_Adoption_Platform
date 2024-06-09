@@ -2,7 +2,6 @@
 {% block start %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/rehome.css' %}">
-
 {% if messages %}
     <ul id="messages">
         {% for message in messages %}
@@ -12,104 +11,99 @@
     <script>
         setTimeout(function() {
             document.getElementById("messages").style.display = "none";
-        }, 2000);
+        }, 2000); // 2000 milliseconds = 2 seconds
     </script>
 {% endif %}
 
 {% if user.is_authenticated %}
+<!-- form for inserting the data -->
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="name">Name of Pet:</label>
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
     <input type="text" name="name" id="name">
     <br>
     <p>
         <label for="image">Image:</label>
         <input type="file" name="image" id="image" required>
     </p>
-=======
->>>>>>> Stashed changes
-    <input type="text" name="name" id="name" required>
-    
->>>>>>> d82e72f8fd35f11fe27193dc59cfb36a51b33da8
     <label for="description">Description of Pet:</label>
-    <textarea class="form-control" name="description" id="description" rows="3" required></textarea>
+    <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+    <br>
     
     <label for="color">Color of Pet:</label>
-    <input type="text" name="color" id="color" required>
+    <input type="text" name="color" id="color">
+    <br>
     
     <label for="species">Choose a species of Pet:</label>
-    <select name="species" id="species" onchange="breedDropdown()" required>
+    <select name="species" id="species" onchange="breedDropdown()">
         <option value="">--Select a species--</option>
         <option value="Dog">Dog</option>
         <option value="Cat">Cat</option>
     </select>
+    <br>
     
     <label for="breed">Breed:</label>
-    <select name="breed" id="breed" disabled required>
+    <select name="breed" id="breed" disabled>
         <option value="">Please select a species</option>
     </select>
+    <br>
     
     <label for="gender">Gender:</label>
-    <div class="radio-container">
-        <input type="radio" name="gender" id="male" value="male">
-        <label for="male">Male</label>
-        <input type="radio" name="gender" id="female" value="female">
-        <label for="female">Female</label>
+    <div class="switch-container">
+        <span>Male</span>
+        <label class="switch">
+            <input type="checkbox" name="gender" id="gender" value="male" onchange="toggleGender()">
+            <span class="slider round"></span>
+        </label>
+        <span>Female</span>
     </div>
-    
-
+    <br>
     
     <label for="size">Size:</label>
-    <select name="size" id="size" required>
+    <select name="size" id="size">
         <option value="small">Small</option>
         <option value="medium">Medium</option>
         <option value="large">Large</option>
     </select>
+    <br>
     
     <label for="age">Age:</label>
-    <input type="number" name="age" id="age" min="0" required>
+    <input type="number" name="age" id="age" min="0">
+    <br>
     
     <label for="spayed">Spayed:</label>
-    <select name="spayed" id="spayed" required>
+    <select name="spayed" id="spayed">
         <option value="no">No</option>
         <option value="yes">Yes</option>
     </select>
+    <br>
     
     <label for="sellername">Seller Name:</label>
-    <input type="text" name="sellername" id="sellername" value="{{ user.username }}" readonly>
+    <input type="text" name="sellername" id="sellername">
+    <br>
     
-<<<<<<< Updated upstream
-    <label for="adoptionfee">Adoption Fee:</label>
-    <input type="number" name="adoptionfee" id="adoptionfee" required>
-=======
-<<<<<<< HEAD
     <label for="adoptionfee">Adoption Fee(Rs):</label>
     <input type="number" name="adoptionfee" id="adoptionfee">
     <br>
-=======
-    <label for="adoptionfee">Adoption Fee:</label>
-    <input type="number" name="adoptionfee" id="adoptionfee" required>
->>>>>>> d82e72f8fd35f11fe27193dc59cfb36a51b33da8
->>>>>>> Stashed changes
     
     <label for="phone">Phone Number:</label>
-    <input type="text" name="phone" id="phone" pattern="\d{10}" title="Please enter a valid 10-digit phone number" required>
+    <input type="text" name="phone" id="phone">
+    <br>
     
     <button type="submit">LIST YOUR PET</button>
 </form>
+
 {% else %}
 <script>
     window.onload = function() {
         alert("Please log in or sign up to list your pet.");
-        window.location.href = "{% url 'login' %}";
+        window.location.href = "{% url 'login' %}"; // Redirect to the login page
     };
 </script>
 {% endif %}
 
 <script>
+    // Define breed data
     const breedData = {
         "Dog": ["Indian pariah dog", "Indian Spitz", "Mudhol hound", "Rajapalayam", "Beagle", "Chippiparai", "German Shepherd", "Labrador", "Pug", "Doberman", "Bakharwal dog", "Boxer", "Bulldog"],
         "Cat": ["Bombay cat", "Himalayan cat", "Siamese cat", "Maine Coon", "Persian cat", "American Bobtail", "Oriental Shorthair"],
@@ -118,33 +112,24 @@
     function breedDropdown() {
         const breedDropdown = document.getElementById("breed");
         const selectedSpecies = document.getElementById("species").value;
+
+        // Clear existing options
         breedDropdown.innerHTML = "";
 
         if (selectedSpecies && breedData[selectedSpecies]) {
-            breedDropdown.disabled = false;
+            breedDropdown.disabled = false; // Enable the dropdown
             breedData[selectedSpecies].forEach(breed => {
-                const option = document.createElement("option");
-                option.value = breed;
-                option.text = breed;
-                breedDropdown.add(option);
+                breedDropdown.add(new Option(breed, breed));
             });
         } else {
-            breedDropdown.disabled = true;
+            breedDropdown.disabled = true; // Disable the dropdown if no valid species
             breedDropdown.add(new Option("Please select a species", ""));
         }
     }
 
     function toggleGender() {
-    const maleCheckbox = document.getElementById('male');
-    const femaleCheckbox = document.getElementById('female');
-    
-    // Ensure only one gender is selected
-    if (maleCheckbox.checked) {
-        femaleCheckbox.checked = false;
-    } else if (femaleCheckbox.checked) {
-        maleCheckbox.checked = false;
+        const genderCheckbox = document.getElementById('gender');
+        genderCheckbox.value = genderCheckbox.checked ? 'female' : 'male';
     }
-}
-
 </script>
 {% endblock %}

@@ -12,7 +12,8 @@ class Seller(models.Model):
     phone = models.CharField(max_length=15)
 
 class Details(models.Model):
-    name = models.CharField(max_length=50, primary_key=True)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
     gender = models.CharField(max_length=10, default='male')
     size = models.CharField(max_length=10, default='small')
     color = models.CharField(max_length=30, default='black')
@@ -20,5 +21,6 @@ class Details(models.Model):
     spayed = models.CharField(max_length=10, default='no')
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
     image = models.ForeignKey(AdoptionImage, on_delete=models.SET_NULL, null=True, blank=True)  # Link to the image
+    address = models.CharField(max_length=255, blank=True, null=True)
 def __str__(self):
         return self.name

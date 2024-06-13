@@ -1,0 +1,8 @@
+.pet-details {
+    margin-top: 50px;
+}
+
+.pet-details img {
+    max-width: 100%;
+    height: auto;
+}

@@ -13,4 +13,5 @@ urlpatterns = [
     path('login/', views.LoginP, name='login'),
     path('register/', views.RegisterP, name='register'),
     path('logout/', views.LogoutPage, name='logout'),
+    path('adopt/<str:pet_name>/', views.adopt, name='adopt'),
 ]

@@ -1,5 +1,5 @@
 # views.py
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
@@ -33,7 +33,7 @@ def Rehome(request):
         sellername = request.POST.get('sellername')
         adoptionfee = request.POST.get('adoptionfee')
         phone = request.POST.get('phone')
-
+        address = request.POST.get('address')
         seller, created = Seller.objects.get_or_create(
             sellername=sellername,
             defaults={'adoptionfee': adoptionfee, 'phone': phone}
@@ -51,7 +51,8 @@ def Rehome(request):
             color=color,
             age=age,
             spayed=spayed,
-            seller=seller
+            seller=seller,
+            address=address
         )
 
         messages.success(request, 'Data added successfully!')
@@ -81,7 +82,6 @@ def RegisterP(request):
         email = request.POST.get('email')
         pass1 = request.POST.get('password1')
         pass2 = request.POST.get('password2')
-
         if User.objects.filter(username=uname).exists():
             messages.info(request, "Username already exists")
             return render(request, 'home.html', {'display_alert': True})
@@ -92,10 +92,12 @@ def RegisterP(request):
         else:
             my_user = User.objects.create_user(uname, email)
             my_user.set_password(pass1)
+
             my_user.save()
             next_url = request.GET.get('next', 'home')
             return redirect(next_url)
     return render(request, 'home.html')
+
 
 def LogoutPage(request):
     logout(request)
@@ -111,6 +113,7 @@ def find_a_pet(request):
             pet.image = None
     return render(request, 'find_a_pet.html', {'pets': pets})
 
+
 @login_required
 def RehomePet(request):
     return render(request,'rehome_a_pet.html')
@@ -123,3 +126,13 @@ def Donate(request):
 
 def MyAccount(request):
     return render(request,'my_account.html')
+
+def adopt(request, pet_name):
+    pet = get_object_or_404(Details, name=pet_name)
+    try:
+        pet.image = AdoptionImage.objects.get(name=pet.name)
+    except AdoptionImage.DoesNotExist:
+            pet.image = None
+    # Assuming you have a form for adoption/payment handling
+    # Here's a basic example to render an adopt template
+    return render(request, 'adopt.html', {'pet': pet})

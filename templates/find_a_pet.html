@@ -54,9 +54,46 @@
                     Spayed: {{ pet.spayed }}<br>
                     Seller: {{ pet.seller.sellername }}<br>
                 </p>
-                <a href="{% url 'adopt' pet.name %}">
-                    <button type="button" class="btn btn-primary adopt-btn">Adopt</button>
-                </a>
+                <button type="button" class="btn btn-primary adopt-btn" data-bs-toggle="modal" data-bs-target="#adoptModal{{ pet.id }}">Adopt</button>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="adoptModal{{ pet.id }}" tabindex="-1" aria-labelledby="adoptModalLabel{{ pet.id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="adoptModalLabel{{ pet.id }}">{{ pet.name }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {% if pet.image %}
+                                    <img src="{{ pet.image.image }}" alt="Image of {{ pet.name }}" class="img-fluid">
+                                {% else %}
+                                    <p>No image available</p>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                <p>
+                                    Gender: {{ pet.gender }}<br>
+                                    Size: {{ pet.size }}<br>
+                                    Color: {{ pet.color }}<br>
+                                    Age: {{ pet.age }}<br>
+                                    Spayed: {{ pet.spayed }}<br>
+                                    Seller: {{ pet.seller.sellername }}<br>
+                                    Adoption Fee:{{pet.adoptionfee}}<br>
+                                </p>
+                                <p>Description: {{ pet.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="{% url 'adopt' pet.name %}" class="btn btn-primary">CheckOut Now</a>
+                    </div>
+                </div>
             </div>
         </div>
         {% empty %}
